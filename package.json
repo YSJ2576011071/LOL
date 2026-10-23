@@ -1,0 +1,25 @@
+{
+  "name": "lol-onetrick-finder",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MBTI 스타일 설문으로 나에게 맞는 LoL 원챔을 추천하고 티어별 승급 공략을 알려주는 웹앱",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.2",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.5"
+  }
+}

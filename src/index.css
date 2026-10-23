@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cinzel", "Noto Sans KR", serif;
+
+  /* 배경 계열 */
+  --color-void-950: #04070d;
+  --color-void-900: #080d17;
+  --color-void-800: #0e1522;
+  --color-void-700: #172133;
+  --color-void-600: #24314a;
+
+  /* 헥스텍 골드 */
+  --color-gold-100: #f0e6d2;
+  --color-gold-300: #e4cf96;
+  --color-gold-400: #c8aa6e;
+  --color-gold-600: #a07b3b;
+  --color-gold-800: #785a28;
+
+  /* 헥스텍 블루 */
+  --color-hex-200: #cdfafa;
+  --color-hex-400: #0ac8b9;
+  --color-hex-600: #0397ab;
+  --color-hex-800: #005a82;
+
+  --color-blood-400: #e84057;
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
+  --animate-shine: shine 3s linear infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(10 200 185 / 0.35); }
+    50% { box-shadow: 0 0 22px 2px rgb(10 200 185 / 0.25); }
+  }
+  @keyframes shine {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    min-height: 100dvh;
+    color: var(--color-gold-100);
+    background-color: var(--color-void-950);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgb(10 200 185 / 0.13), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 100% 100%, rgb(200 170 110 / 0.09), transparent 60%),
+      linear-gradient(rgb(255 255 255 / 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.022) 1px, transparent 1px);
+    background-size: auto, auto, 44px 44px, 44px 44px;
+    background-attachment: fixed;
+    font-family: var(--font-sans);
+    word-break: keep-all;
+  }
+  ::selection {
+    background: rgb(10 200 185 / 0.35);
+  }
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--color-hex-400);
+    outline-offset: 3px;
+  }
+}
+
+/* 반투명 패널 + 골드 테두리 */
+@utility panel {
+  position: relative;
+  border-radius: 1rem;
+  border: 1px solid rgb(200 170 110 / 0.18);
+  background: linear-gradient(180deg, rgb(16 24 38 / 0.82), rgb(6 10 18 / 0.9));
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(240 230 210 / 0.05);
+  backdrop-filter: blur(6px);
+}
+
+@utility text-gold-gradient {
+  background-image: linear-gradient(180deg, #f6eedb 0%, #e4cf96 45%, #a07b3b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-void-950);
+  background: linear-gradient(180deg, #f0e6d2 0%, #c8aa6e 55%, #a07b3b 100%);
+  box-shadow: 0 0 0 1px rgb(240 230 210 / 0.4) inset, 0 10px 30px -10px rgb(200 170 110 / 0.6);
+  transition: transform 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
+  cursor: pointer;
+  &:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  &:active { transform: translateY(0); }
+  &:disabled { opacity: 0.35; cursor: not-allowed; transform: none; filter: grayscale(0.5); }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  color: var(--color-gold-100);
+  border: 1px solid rgb(200 170 110 / 0.3);
+  background: rgb(8 13 23 / 0.6);
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  &:hover { border-color: var(--color-hex-400); color: var(--color-hex-200); background: rgb(10 200 185 / 0.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
